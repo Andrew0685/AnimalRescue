@@ -1,0 +1,70 @@
+﻿<h1>Home</h1>
+
+<a asp-controller="Admin" asp-action="Index">Admin</a>
+<a asp-controller="Admin" asp-action="Admin">Administrator</a>
+<a asp-controller="Admin" asp-action="User">User</a>
+
+<p>
+    IsAuthenticate : @ViewBag.IsAuthenticated
+</p>
+
+<p>
+    Name : @ViewBag.Name
+</p>
+
+
+<div class="localization-form">
+    <form action="#">
+        <fieldset>
+            <legend>Выберите локализацию объявлений</legend>
+            <label for="region">Область</label>
+            <select id="region">
+                <option value="some-city">some-region</option>
+            </select>
+            <label for="area">Район</label>
+            <select id="area">
+                <option value="some-city">some-area</option>
+            </select>
+            <label for="city">Город</label>
+            <select id="city">
+                <option value="some-city">some-city</option>
+            </select>
+            <input type="submit" value="Отобрать">
+        </fieldset>
+    </form>
+</div>
+
+<div class="tabs">
+    <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+    <label for="tab-btn-1">Потерянные</label>
+    <input type="radio" name="tab-btn" id="tab-btn-2" value="">
+    <label for="tab-btn-2">Найденные</label>
+    <div id="content-1" class="tab-content">
+        <div class="declaration">
+            <div class="pet-photo">
+                <img src="./sources/Dog_1.jpg" class="image-pet" alt="photo">
+            </div>
+            <div class="params">
+                <a class="description">Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...</a>
+            </div>
+        </div>
+        <div class="declaration">
+            <div class="pet-photo">
+                <img src="./sources/Dog_2.jpg" class="image-pet" alt="photo">
+            </div>
+            <div class="params">
+                <a class="description">Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...</a>
+            </div>
+        </div>
+    </div>
+    <div id="content-2" class="tab-content">
+        <div class="declaration">
+            <div class="pet-photo">
+                <img src="./sources/Dog_3.jpg" class="image-pet" alt="photo">
+            </div>
+            <div class="params">
+                <a class="description">Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...Здесь будет какое-нибудь описание...</a>
+            </div>
+        </div>
+    </div>
+</div>
