@@ -1,0 +1,20 @@
+﻿@model ShelterModel
+
+<div class="chapter-title">
+    <h1> Изменить профиль приюта</h1>
+</div>
+
+
+<form asp-controller ="Shelter" asp-action="EditShelter" method="post" name="EditShelter">
+    <div>
+        <p>
+            @Html.LabelFor(x=>x.Name, "название приюта")<br />
+            @Html.EditorFor(x=>x.Name)
+
+            @Html.LabelFor(x=>x.Address, "адрес приюта")<br />
+            @Html.EditorFor(x=>x.Address)
+
+            <button type="submit">SAVE</button>
+        </p>
+    </div>
+</form>

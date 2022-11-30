@@ -1,0 +1,62 @@
+﻿@model ShelterModel
+@{
+    var sheltersList = (List<ShelterModel>)ViewData["AllShelters"];
+}
+
+
+
+<div class="chapter-title">
+    <h1>Список приютов</h1>
+</div>
+
+
+@if (sheltersList.Count != 0)
+{
+    <div>
+        <table>           
+            @foreach (var item in sheltersList)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Address</td>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                    {
+                        <td>
+                            <form asp-controller="Shelter" asp-action="RemoveShelter" asp-route-id="@item.Id" method="post" name="DleteShelter">
+                                <div>
+                                    <input class="shelter-operations" type="submit" value="Удалить" />
+                                </div>
+                            </form>
+
+                        </td>
+                        <td>
+                            <form asp-controller="Shelter" asp-action="EditShelter" asp-route-id="@item.Id" method="get" name="EditShelter">
+                                <div>
+                                    <input class="shelter-operations" type="submit" value="Изменить" />
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-controller="Animal" asp-action="AddPet" asp-route-id="@item.Id" method="get" name="AddPet">
+                                <div>
+                                    <input class="shelter-operations" type="submit" value="Новый" />
+                                </div>
+                            </form>
+
+                        </td>
+                    }
+                    <td>
+                        <form asp-controller="Animal" asp-action="DisplayShelterPets" asp-route-id="@item.Id" method="get" name="DisplayShelterPets">
+                            <div>
+                                <input class="shelter-operations" type="submit" value="Обитатели" />
+                            </div>
+                        </form>
+
+                    </td>
+                </tr>
+                
+            }
+                      
+        </table>
+    </div>
+}

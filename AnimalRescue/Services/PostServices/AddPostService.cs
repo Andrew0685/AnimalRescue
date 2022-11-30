@@ -17,12 +17,11 @@ namespace AnimalRescue.Services.PostServices
         {
             _dbContext.animalRescueDBContext.Posts.Add(new Post 
             {
-                Id = Guid.NewGuid(),
+                Id = post.Id,
                 Type = post.Type,
                 Description = post.Description,
                 Created = DateTime.Now,
                 UserId = post.UserId,
-                LocationId = post.LocationId,
             });
 
             _dbContext.animalRescueDBContext.SaveChanges();

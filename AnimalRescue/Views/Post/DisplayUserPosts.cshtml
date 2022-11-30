@@ -1,0 +1,47 @@
+﻿@model PostModel
+
+@{
+    var posts = (List<PostModel>)ViewData["UserPosts"];
+}
+
+<div class="chapter-title">
+    <h1>Посты пользователя</h1>
+</div>
+
+
+
+<div>
+
+    
+        @foreach (var post in posts)
+        {
+
+            @*string pathToImage = $"./wwwroot/Repo/Posts/{post.Id}";*@
+            DirectoryInfo pathToImage = new DirectoryInfo($"./wwwroot/Repo/Posts/{post.Id}");
+            var pathFile = $"./wwwroot/Repo/Posts/{post.Id}/{pathToImage.GetFiles().FirstOrDefault().Name}";
+        <div class="declaration">
+            <div>
+                <form asp-controller="Post" asp-action="DeletePost" asp-route-id="@post.Id" method="post" name="DeletePost">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </div>
+
+            <div class="pet-photo">
+                <img src=@pathFile class="image-pet" alt="photo">
+            </div>
+            <div class="params">
+                <a class="description">@post.Type</a>
+            </div>
+            <div class="params">
+                <a class="description">@post.Description</a>
+            </div>
+            <div class="params">
+                <a class="description">@post.Created</a>
+            </div>
+        </div>
+        }
+    
+    
+</div>

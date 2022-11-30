@@ -1,4 +1,33 @@
-﻿<h1>Admin</h1>
+﻿@model UserModel
+@{
+    var user = (UserModel)ViewData["UserProfile"];
+}
 
-<a asp-controller="Home" asp-action="Index">Home</a>
-<a asp-controller="Admin" asp-action="LogOff">LogOff</a>
+<div class="chapter-title">
+    <h1>Профиль администратора</h1>
+</div>
+
+
+<div class="user-profile">
+    <form asp-controller="User" asp-action="EditUserProperties" method="post" name="EditUserProperties">
+        <div class="profile-content">
+            <div class="profile-item">
+                <p>
+                    @Html.LabelFor(x=>x.Email, "Логин")<br />
+                    <input asp-for="Email" class="profile-item" value=@user.Email />
+                </p>
+            </div>
+            <div class="profile-item">
+                <p>
+                    @Html.LabelFor(x=>x.Password, "Пароль")<br />
+                    <input asp-for="Password" class="profile-item" value="" />
+                </p>
+            </div>            
+        </div>
+        <div>
+            <p>
+                <input class="input-button" type="submit" value="Сохранить" method="post" />
+            </p>
+        </div>
+    </form>
+</div>

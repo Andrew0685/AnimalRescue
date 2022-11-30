@@ -1,0 +1,42 @@
+﻿@model LoginModel
+
+<div class="chapter-title">
+    <h1>Страница авторизации</h1>
+</div>
+
+
+<div class="user-profile">
+
+    <div class="profile-content">
+
+        <form asp-controller="Auth" asp-action="Login" method="post">
+
+            <div asp-validation-summary="All">
+            </div>
+
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div>
+                <p>
+                    <div>
+                        @Html.LabelFor(x=>x.EMail, "Имейл/Логин")<br />
+                        <input asp-for="EMail" class="profile-item" />
+                    </div>
+                </p>                                
+            </div>
+            <div>
+                <p>
+                    <div>
+                        @Html.LabelFor(x=>x.Password, "Пароль")<br />
+                        <input asp-for="Password" class="profile-item" />
+                    </div>
+                </p>               
+            </div>
+            <p>
+                <div>
+                    <input class="input-logon-logof" type="submit" value="Вход" />
+                </div>
+            </p>
+        </form>
+    </div>
+    
+</div>

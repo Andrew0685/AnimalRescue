@@ -9,5 +9,7 @@
         public string? LastName { get; set; }
         public string Role { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
+        //public virtual ICollection<Animal> Animals { get; set; }
+        public virtual ICollection<AnimalUser> AnimalUsers { get; set; }
     }
 }

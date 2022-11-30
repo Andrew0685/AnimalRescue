@@ -17,13 +17,17 @@ namespace AnimalRescue.Services.AnimalServices
         {
             _dbContext.animalRescueDBContext.Animals.Add(new Animal 
             {
-                Id = Guid.NewGuid(),
+                Id = animal.Id,
                 Name = animal.Name,
                 Type = animal.Type,
                 Gender = animal.Gender,
                 Age = animal.Age,
                 Description = animal.Description,
+                ShelterId = animal.ShelterId,
+                FileName = animal.PhotoFileName,
             });
+
+            _dbContext.animalRescueDBContext.SaveChanges();
         }
     }
 }

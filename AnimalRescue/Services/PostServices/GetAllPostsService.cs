@@ -26,11 +26,42 @@ namespace AnimalRescue.Services.PostServices
                     Description = posts.Description,
                     Created = posts.Created,
                     UserId = posts.UserId,
-                    LocationId = posts.LocationId,
                 });
             }
 
             return postsList;
+        }
+
+        public List<PostModel> GetPostsLostType() 
+        {
+            var allPosts = GetAllPosts();
+            List<PostModel> postsLostType = new List<PostModel>();
+
+            foreach (var post in allPosts) 
+            {
+                if (post.Type == "lost") 
+                {
+                    postsLostType.Add(post);
+                }
+            }
+
+            return postsLostType;
+        }
+
+        public List<PostModel> GetPostsFoundType()
+        {
+            var allPosts = GetAllPosts();
+            List<PostModel> postsFoundType = new List<PostModel>();
+
+            foreach (var post in allPosts)
+            {
+                if (post.Type == "found")
+                {
+                    postsFoundType.Add(post);
+                }
+            }
+
+            return postsFoundType;
         }
     }
 }

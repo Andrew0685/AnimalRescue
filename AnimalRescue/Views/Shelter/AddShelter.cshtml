@@ -1,0 +1,36 @@
+﻿@model ShelterModel
+
+@*<a asp-controller="Home" asp-action="Index">Home</a>*@
+
+
+<div class="user-profile">
+
+    <div class="profile-content">
+
+        <form asp-controller="Shelter" asp-action="AddShelter" method="post">
+            <div>
+                <p>
+                    <div>
+                        @Html.LabelFor(x=>x.Name, "Название")<br />
+                        <input asp-for="Name" class="profile-item" />
+                    </div>
+                </p>
+            </div>
+            <div>
+                <p>
+                    <div>
+                        @Html.LabelFor(x=>x.Address, "Адрес")<br />
+                        <input asp-for="Address" class="profile-item" />
+                    </div>
+                </p>
+            </div>
+            
+            <p>
+                <div>
+                    <input class="input-logon-logof" type="submit" value="Добавить" />
+                </div>
+            </p>
+        </form>
+    </div>
+
+</div>

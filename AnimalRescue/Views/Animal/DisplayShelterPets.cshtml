@@ -1,0 +1,77 @@
+﻿@model AnimalModel
+@{
+    var animals = (List<AnimalModel>)ViewData["ShelterAnimals"];
+
+    bool isMatch;
+}
+<div class="chapter-title">
+    <h1>Обитатели приюта</h1>
+</div>
+
+<div>
+    @foreach (var animal in animals)
+    {
+        isMatch = false;
+        @*string pathToImage = $"./wwwroot/Repo/Posts/{post.Id}";*@
+        var pathFile = $"./wwwroot/Repo/Animals/{animal.ShelterId}/{animal.PhotoFileName}";
+
+        @if (User.Identity.IsAuthenticated && User.IsInRole("admin")) 
+        {
+            <div>
+                <form asp-controller="Animal" asp-action="DeleteAnimal" asp-route-id="@animal.Id" method="post" name="DeletePost">
+                    <input type="hidden" asp-for="ShelterId" value=@animal.ShelterId />
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </div>
+        }
+        
+
+        <div class="pet-photo">
+            <img src=@pathFile class="image-pet" alt="photo">
+        </div>
+        <div class="params">
+            <a class="description">@animal.Name</a>
+        </div>
+        <div class="params">
+            <a class="description">@animal.Type</a>
+        </div>
+        <div class="params">
+            <a class="description">@animal.Age</a>
+        </div>
+        <div class="params">
+            <a class="description">@animal.Gender</a>
+        </div>
+        <div class="params">
+            <a class="description">@animal.Description</a>
+        </div>
+
+        @if (ViewData["SelectedUserFavorites"] != null)
+        {
+            foreach (var item in (List<AnimalUserModel>)ViewData["SelectedUserFavorites"])
+            {
+                if (item.AnimalId == animal.Id) 
+                {
+                    isMatch = true;
+                    break;
+                }
+            }
+        }
+        @if (User.Identity.IsAuthenticated && User.IsInRole("user")) 
+        {
+            <form asp-controller="Favorites" asp-action="AddFavorite" method="post">
+                <input type="hidden" asp-for="Id" value=@animal.Id />
+                <input type="hidden" asp-for="ShelterId" value=@animal.ShelterId />
+                @if (isMatch)
+                {
+                    <h3>Уже отслеживаете</h3>
+                }
+                else
+                {
+                    <input disabled=@isMatch class="input-button" type="submit" value="Избранное" />
+                }
+            </form>
+        }        
+    }
+</div>

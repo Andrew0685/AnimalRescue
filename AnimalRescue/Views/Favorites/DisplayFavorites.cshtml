@@ -1,0 +1,51 @@
+﻿@model FavoriteModel
+@{
+    var favorites = (List<FavoriteModel>)ViewData["UserFavorites"];
+}
+
+<div class="chapter-title">
+    <h1>Избранное</h1>
+</div>
+
+
+<div>
+    @foreach(var item in favorites)
+    {
+        var pathFile = $"./wwwroot/Repo/Animals/{item.ShelterId}/{item.PhotoFileName}";
+        <div class="declaration">
+            <div>
+                <form asp-controller="Favorites" asp-action="DeleteFavorite" asp-route-id="@item.AnimalId" method="post" name="DeleteFavorite">
+                    <input type="hidden" asp-for="AnimalId" value=@item.AnimalId />
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </div>            
+
+            <div class="pet-photo">
+                <img src=@pathFile class="image-pet" alt="photo">
+            </div>
+            <div class="params">
+                <a class="description">@item.Name</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.Type</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.Age</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.Gender</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.ShelterTitle</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.Address</a>
+            </div>
+            <div class="params">
+                <a class="description">@item.Description</a>
+            </div>
+        </div>        
+    }
+</div>

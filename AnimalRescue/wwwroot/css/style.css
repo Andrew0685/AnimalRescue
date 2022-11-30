@@ -15,26 +15,136 @@ body{
 	min-width: 900px;
 }
 
-button {
+main {
+	/*padding-top: 20px;*/
+	/*display: flex;*/
+	margin-left: auto;
+	margin-right:auto;
+	width: 100%;
+}
+
+label {
+	font-size: 25px;
+}
+
+
+table {
+	margin-top: 50px;
+	margin-bottom: 30px;
+	align-self: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 75%;
+}
+
+td, th {
+	border: 1px solid teal;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+.chapter-title {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	width: 900px;
+	height: 50px;
+	display: flex;
+	color: teal;
+	justify-content: center;
+}
+
+textarea {
+	color: teal;
+	font-size: 20px;
+	border: 1px solid teal;
+	width: 350px;
+	height: 250px;
+}
+
+.radio {
+	color: teal;
+	border: 1px solid teal;
+}
+
+input.file-upload {
+	color: teal;
+	font-size: 20px;
+	border: 1px solid teal;
+	cursor: pointer;
+	width: 550px;
+	height: 25px;
+}
+
+input.shelter-operations {
+	font-size: 20px;
+	border: 2px solid teal;
+	cursor: pointer;
+	width: 150px;
+	height: 25px;
+}
+
+input.profile-item {
 	color: teal;
 	margin-left: auto;
 	margin-right: 20px;
 	font-size: 20px;
 	justify-content: space-between;
 	align-items: center;
-	background: transparent;
 	border: 1px solid teal;
 	cursor: pointer;
-	width: 200px;
+	width: 250px;
+	height: 25px;
+}
+
+input.input-button {
+	color: teal;
+	margin-right:auto;
+	margin-bottom:30px;
+	margin-top:30px;
+	font-size: 20px;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid teal;
+	cursor: pointer;
+	width: 150px;
 	height: 30px;
 }
 
-.head-back{
+input.input-logon-logof {
+	color: teal;
+	margin-right: auto;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	font-size: 20px;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid teal;
+	cursor: pointer;
+	width: 130px;
+	height: 30px;
+	background: transparent;
+	box-sizing: border-box;
+}
+
+.buttons-logon-logoff {
+	margin-left: auto;
+	margin-right: 20px;
+	box-sizing: border-box;
+}
+
+.head-back {
 	background: #fff;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
-	width: 75%;	
+	width: 75%;
 }
 .header-content{	
 	margin: auto;
@@ -67,19 +177,47 @@ nav{
 	display: flex;
 	justify-content: center;
 }
-.topnav{
-	font-size: 14px;	
+.topnav {
+	font-size: 14px;
 	margin-top: 40px;
 }
-.topnav a{
-	text-align: center;
-	padding: 14px 16px;
-	font-size: 25px;
-	cursor: pointer;
+
+	.topnav a {
+		text-align: center;
+		padding: 14px 16px;
+		font-size: 25px;
+		color: teal;
+		cursor: pointer;
+	}
+
+		.topnav a:hover {
+			border-bottom: 2px solid teal;
+		}
+
+nav.small-nav {
+	margin: auto;
+	width: 900px;
+	height: 70px;
+	display: flex;
+	justify-content: center;
 }
-.topnav a:hover{
-border-bottom: 2px solid #000;
+.topnav-small-nav {
+	font-size: 14px;
+	/*margin-top: 5px;*/
 }
+	.topnav-small-nav a {
+		text-align: center;
+		padding: 14px 16px;
+		font-size: 20px;
+		color: black;
+		cursor: pointer;
+	}
+		.topnav-small-nav a:hover {
+			border-bottom: 2px solid #000;
+		}
+
+
+
 .container {
 	background: #fff;
 	margin: auto;
@@ -87,58 +225,6 @@ border-bottom: 2px solid #000;
 	display: flex;
 	flex-wrap: wrap;
 }
-
-.localization-form {
-	display: flex;
-	justify-content: center;
-}
-
-fieldset {
-	margin-bottom: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	display: flex;
-	flex-wrap: nowrap;
-	border: 2px solid teal;
-}
-legend {
-  padding: 0px 3px;
-  font-size: 20px;
-  font-variant: small-caps;
-}
-label {
-	font-size: 23px;
-  width: 90px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 6px;
-}
-select {
-  width: 150px;
-  height: 30px;
-  margin: 6px;
-  font-size: 15px;
-  box-sizing: border-box;
-}
-input {
-	/*width: 150px;
-	padding: 5px 15px;
-	margin: 5px 0;
-	border: 1px solid teal;*/
-
-	color: teal;
-	margin-left: auto;
-	margin-right: 20px;
-	font-size: 20px;
-	justify-content: space-between;
-	align-items: center;
-	background: transparent;
-	border: 1px solid teal;
-	cursor: pointer;
-	width: 150px;
-	height: 30px;
-}
-
 
 
 .tabs {
@@ -237,4 +323,32 @@ input {
 	padding: 5px;
 	box-sizing: border-box;
 	color: #a7a7a7
+}
+
+.user-profile {
+	background: #f0f0f0;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 2px solid teal;
+}
+
+.profile-content {
+	margin-top: 50px;
+	margin-bottom: 100px;
+	justify-content: center;
+}
+
+.profile-item {
+	margin-top: 10px;
+}
+
+
+textfield-profile {
+	width: 150px;
+	height: 30px;
 }

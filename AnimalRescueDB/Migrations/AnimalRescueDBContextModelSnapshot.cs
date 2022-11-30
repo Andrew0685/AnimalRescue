@@ -28,11 +28,14 @@ namespace AnimalRescueDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Age")
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("FileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -58,27 +61,27 @@ namespace AnimalRescueDB.Migrations
                     b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("AnimalRescueDBModels.Entities.Location", b =>
+            modelBuilder.Entity("AnimalRescueDBModels.Entities.AnimalUser", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("AnimalId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Area")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("District")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AnimalsUsers");
                 });
 
             modelBuilder.Entity("AnimalRescueDBModels.Entities.Post", b =>
@@ -94,9 +97,6 @@ namespace AnimalRescueDB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -105,8 +105,6 @@ namespace AnimalRescueDB.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -123,16 +121,11 @@ namespace AnimalRescueDB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
 
                     b.ToTable("Shelters");
                 });
@@ -177,41 +170,39 @@ namespace AnimalRescueDB.Migrations
                     b.Navigation("Shelter");
                 });
 
-            modelBuilder.Entity("AnimalRescueDBModels.Entities.Post", b =>
+            modelBuilder.Entity("AnimalRescueDBModels.Entities.AnimalUser", b =>
                 {
-                    b.HasOne("AnimalRescueDBModels.Entities.Location", "Location")
-                        .WithMany("Posts")
-                        .HasForeignKey("LocationId")
+                    b.HasOne("AnimalRescueDBModels.Entities.Animal", "Animal")
+                        .WithMany("AnimalUsers")
+                        .HasForeignKey("AnimalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AnimalRescueDBModels.Entities.User", "User")
+                        .WithMany("AnimalUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AnimalRescueDBModels.Entities.Post", b =>
+                {
                     b.HasOne("AnimalRescueDBModels.Entities.User", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Location");
-
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AnimalRescueDBModels.Entities.Shelter", b =>
+            modelBuilder.Entity("AnimalRescueDBModels.Entities.Animal", b =>
                 {
-                    b.HasOne("AnimalRescueDBModels.Entities.Location", "Location")
-                        .WithMany("Shelters")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("AnimalRescueDBModels.Entities.Location", b =>
-                {
-                    b.Navigation("Posts");
-
-                    b.Navigation("Shelters");
+                    b.Navigation("AnimalUsers");
                 });
 
             modelBuilder.Entity("AnimalRescueDBModels.Entities.Shelter", b =>
@@ -221,6 +212,8 @@ namespace AnimalRescueDB.Migrations
 
             modelBuilder.Entity("AnimalRescueDBModels.Entities.User", b =>
                 {
+                    b.Navigation("AnimalUsers");
+
                     b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618

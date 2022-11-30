@@ -1,0 +1,47 @@
+﻿@model UserModel
+@{
+    var user = (UserModel)ViewData["UserProfile"];
+}
+
+<div class="chapter-title">
+    <h1> Ваш профиль</h1>
+</div>
+
+
+
+<div class="user-profile">
+    <form asp-controller="User" asp-action="EditUserProperties" method="post" name="EditUserProperties">
+        <div class="profile-content">   
+            <div class="profile-item">
+                <p>
+                    @Html.LabelFor(x=>x.Email, "Логин")<br />
+                    <input asp-for="Email" class="profile-item" value=@user.Email />
+                </p>
+            </div>
+            <div class="profile-item">
+                <p>                    
+                    @Html.LabelFor(x=>x.Password, "Пароль")<br />
+                    <input asp-for="Password" class="profile-item" value="" />
+                </p>
+            </div>  
+            <div class="profile-item">
+                <p>
+                    @Html.LabelFor(x=>x.FirstName, "Имя")<br />
+                    <input asp-for="FirstName" class="profile-item" value=@user.FirstName />
+                </p>
+            </div>
+            <div class="profile-item">
+                <input type="hidden" asp-for="Id" value=@user.Id />
+                <p>
+                    @Html.LabelFor(x=>x.LastName, "Фамилия")<br />
+                    <input asp-for="LastName" class="profile-item" value=@user.LastName />
+                </p>
+            </div>                        
+        </div>
+        <div>
+            <p>
+                <input class="input-button" type="submit" value="Сохранить" method="post" />
+            </p>
+        </div>
+    </form>
+</div>

@@ -15,17 +15,57 @@
         <div class="head-back">
             <div classe="header-content">
                 <div class="logo">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img class="graficlogo" src="./img/logo.png" alt="lgo"></a>
-                    <button class="login" type="button">Личный кабинет</button>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login"><img class="graficlogo" src="/img/logo.png" alt="lgo"></a>
+                    
+                    @if (User.Identity.IsAuthenticated) 
+                    {
+                        <div class="buttons-logon-logoff">
+                            <input class="input-logon-logof" type="button" value="ВЫХОД" onclick="location.href='@Url.Action("LogOff", "Auth")'" />
+                        </div>                        
+                    }
+                    else
+                    {
+                        <div class="buttons-logon-logoff">
+                            <div>
+                                <input class="input-logon-logof" type="button" value="Вход" onclick="location.href='@Url.Action("Index", "User")'" />
+                            </div>
+                            <div>
+                                <input class="input-logon-logof" type="button" value="Регистрация" onclick="location.href='@Url.Action("Register", "Auth")'" />
+                            </div>
+                        </div>
+                    }
+                    
                 </div>
             </div>
             <nav>
                 <div class="topnav">
-                    <a>ГЛАВНАЯ</a>
-                    <a>РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ</a>
-                    <a>О НАС</a>
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">ГЛАВНАЯ</a>
+                    <a class="nav-link text-dark" asp-controller="Post" asp-action="AddPost">РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ</a>
+                    <a class="nav-link text-dark" asp-controller="Shelter" asp-action="Index">ПРИЮТЫ</a>
                 </div>
             </nav>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <nav class="small-nav">
+                    <div class="topnav-small-nav">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a asp-controller="Admin" asp-action="Index">ПРОФИЛЬ</a>
+                            <a class="nav-link text-dark" asp-controller="Shelter" asp-action="AddShelter">ДОБАВИТЬ ПРИЮТ</a>
+                            <a class="nav-link text-dark" asp-controller="Post" asp-action="DisplayUserPosts">МОИ ОБЪЯВЛЕНИЯ</a>
+                            <a class="nav-link text-dark" asp-controller="User" asp-action="DisplayUsers">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</a>
+                        }
+                        else if (User.IsInRole("user"))
+                        {
+                            <a asp-controller="User" asp-action="Index">МОЙ ПРОФИЛЬ</a>
+                            <a class="nav-link text-dark" asp-controller="Post" asp-action="DisplayUserPosts">МОИ ОБЪЯВЛЕНИЯ</a>
+                            <a class="nav-link text-dark" asp-controller="Favorites" asp-action="DisplayFavorites">ИЗБРАННОЕ</a>
+                        }
+                    </div>
+                </nav>
+            }
+            
         </div>
     </header>
     @*<header>

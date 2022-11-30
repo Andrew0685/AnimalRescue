@@ -2,6 +2,6 @@
 {
     public interface IDeletePost
     {
-        public void DeletePost(Guid id);
+        public void RemovePost(Guid id);
     }
 }

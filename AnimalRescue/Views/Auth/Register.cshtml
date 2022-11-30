@@ -1,0 +1,44 @@
+﻿@model UserModel
+
+<div class="chapter-title">
+    <h1>Страница регистрации нового пользователя</h1>
+</div>
+
+
+<div class="user-profile">
+    <div class="profile-content">
+        <form asp-controller="Auth" asp-action="Register" method="post">
+            <div>
+                <p>
+                    @Html.LabelFor(x=>x.Email, "Имейл/логин")<br />
+                    <input asp-for="Email" class="profile-item" />
+                </p>                  
+            </div>
+            <div>
+                <p>
+                    @Html.LabelFor(x=>x.Password, "Пароль")<br />
+                    <input asp-for="Password" class="profile-item" />
+                </p>
+            </div>
+            <div>
+                <p>
+                    @Html.LabelFor(x=>x.FirstName, "Имя")<br />
+                    <input asp-for="FirstName" class="profile-item" />
+                </p>                  
+            </div>
+            <div>
+                <p>
+                    @Html.LabelFor(x=>x.LastName, "Фамилия")<br />
+                    <input asp-for="LastName" class="profile-item" />
+                </p>                
+            </div>
+            <input type="hidden" asp-for="Role" value="user" />
+            <p>
+                <div>
+                    <input class="input-logon-logof" type="submit" value="Сохранить" />
+                </div>
+            </p>
+        </form>
+    </div>
+</div>
+

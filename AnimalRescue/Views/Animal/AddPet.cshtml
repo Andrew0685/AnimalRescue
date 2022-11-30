@@ -1,0 +1,41 @@
+﻿@model AnimalModel
+
+<div class="chapter-title">
+    <h1>Добавить новое животное в приют</h1>
+</div>
+
+
+<div>
+    <form asp-controller="Animal" asp-action="AddPet" method="post" name="AddPet" enctype="multipart/form-data">
+        <div class="mb-3">
+                    <label class="form-label">Upload file</label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+        <div>
+            <label>Тип</label>
+            <input asp-for="Type" />
+        </div>
+        <div>
+            <label>Имя</label>
+            <input asp-for="Name" />
+        </div>
+        <div>
+            <label>Пол</label>
+            <input asp-for="Gender" />
+        </div>
+        <div>
+            <label>Возраст</label>
+            <input type="number" asp-for="Age" />
+        </div>
+        <div>
+            <label>Описание</label>
+            <textarea asp-for="Description" rows="10" cols="70"></textarea>
+        </div>
+        <div>
+            <input type="hidden" asp-for="ShelterId" value=@ViewData["ShelterId"] />
+            <button type="submit" class="btn btn-sm btn-danger">
+                ADD
+            </button>
+        </div>        
+    </form>
+</div>

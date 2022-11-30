@@ -16,11 +16,11 @@ namespace AnimalRescue.Services.UserSevices
        
         public void EditUser(UserModel user)
         {
-            var changingUser = _dbContext.animalRescueDBContext.Users.FirstOrDefault(u => u.Id == user.Id);
-            changingUser.Email = user.Email;
-            changingUser.Password = user.Password;
-            changingUser.LastName = user.LastName;
-            changingUser.FirstName = user.FirstName;
+            var chengingUser = _dbContext.animalRescueDBContext.Users.FirstOrDefault(u => u.Id == user.Id);
+            chengingUser.Email = user.Email;
+            chengingUser.Password = user.Password;
+            chengingUser.LastName = user.LastName;
+            chengingUser.FirstName = user.FirstName;
 
             _dbContext.animalRescueDBContext.SaveChanges();
         }
