@@ -19,27 +19,24 @@
         @foreach (var post in lostTypePosts)
         {
             <div class="declaration">
-                @*string pathToImage = $"./wwwroot/Repo/Posts/{post.Id}";*@
                 @{
                     DirectoryInfo pathToImage = new DirectoryInfo($"./wwwroot/Repo/Posts/{post.Id}");
                     var postImage = pathToImage.GetFiles().FirstOrDefault().Name;
-                    var pathFile = $"{post.Id}/{postImage}";
                 }
                 
 
                 <div>
-                    <a class="text-info">@post.Created</a>
+                    <a class="text-info">@post.Created.ToString("dd.MM.yyyy")</a>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                     {
                         <form asp-controller="Post" asp-action="DeletePostFromBoard" asp-route-id="@post.Id" method="post" name="DeletePost">
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                Удалить
-                            </button>
+                            <input type="hidden" asp-for="Id" value=@post.Id />
+                    <input class="input-logon-logof" type="submit" value="Удалить" />
                         </form>
                     }
                 </div>
                 <div class="pet-photo">
-                    <img src="./Repo/Posts/@pathFile" class="image-pet" alt="photo">
+                    <img src='@Url.Content($"~/Repo/Posts/{post.Id}/{postImage}")' class="image-pet" alt="photo">
                 </div>
                 <div class="params">
                     <a class="description">@post.Description</a>

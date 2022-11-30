@@ -1,4 +1,5 @@
-﻿using AnimalRescue.Models;
+﻿using AnimalRescue.Exceptions;
+using AnimalRescue.Models;
 using AnimalRescue.Services.DBServices;
 using AnimalRescue.Services.DBServices.Interfaces;
 using AnimalRescue.Services.UserSevices.Interfaces;
@@ -20,17 +21,25 @@ namespace AnimalRescue.Services.UserSevices
         
         public void CreateUser(UserModel user)
         {
-            _dbContext.animalRescueDBContext.Users.Add(new User
-            {
-                Id = Guid.NewGuid(),
-                Email = user.Email,
-                Password = user.Password,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Role = user.Role,
-            });
-            _dbContext.animalRescueDBContext.SaveChanges();
+            var existUsers = _dbContext.animalRescueDBContext.Users.FirstOrDefault(u=>u.Email == user.Email);
 
+            if (existUsers == null)
+            {
+                _dbContext.animalRescueDBContext.Users.Add(new User
+                {
+                    Id = Guid.NewGuid(),
+                    Email = user.Email,
+                    Password = user.Password,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Role = user.Role,
+                });
+                _dbContext.animalRescueDBContext.SaveChanges();
+            }
+            else 
+            {
+                throw new ExistUserExeption("Such user is already exists!!!");
+            }
         }
     }    
 }

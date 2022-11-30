@@ -1,4 +1,5 @@
-﻿using AnimalRescue.Models;
+﻿using AnimalRescue.Exceptions;
+using AnimalRescue.Models;
 using AnimalRescue.Services.AnimalServices.Interfaces;
 using AnimalRescue.Services.FavoriteServices.Interfaces;
 using AnimalRescue.Services.FileUploadServices.Interfaces;
@@ -69,13 +70,18 @@ namespace AnimalRescue.Controllers
         public async Task<ActionResult> AddPet(AnimalModel animal)
         {
             var repoPath = $"wwwroot\\Repo\\Animals\\{animal.ShelterId}";
-            animal.Id = Guid.NewGuid();
-            animal.PhotoFileName = $"{animal.Id}{Path.GetExtension(animal.File.FileName)}";
 
             if (animal.File != null)
             {
                 filePath = await _fileUpload.UploadFileAsync(animal.File, repoPath, animal.Id.ToString());
             }
+            else
+            {
+                throw new FileUploadExeption("You have not uploaded an image!!!Please do this!!!");
+            }
+            
+            animal.Id = Guid.NewGuid();
+            animal.PhotoFileName = $"{animal.Id}{Path.GetExtension(animal.File.FileName)}";
 
             _addAnimal.CreateAnimal(animal);
             

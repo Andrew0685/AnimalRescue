@@ -1,4 +1,5 @@
-﻿using AnimalRescue.Models;
+﻿using AnimalRescue.Exceptions;
+using AnimalRescue.Models;
 using AnimalRescue.Services.DBServices.Interfaces;
 using AnimalRescue.Services.FileUploadServices.Interfaces;
 using AnimalRescue.Services.PostServices.Interfaces;
@@ -57,12 +58,17 @@ namespace AnimalRescue.Controllers
         [HttpPost]
         public async Task<ActionResult> AddPost(PostModel model) 
         {
+
             model.Id = Guid.NewGuid();
             var repoPath = $"wwwroot\\Repo\\Posts\\{model.Id}";
 
-            if (model.File != null) 
+            if (model.File != null)
             {
                 filePath = await _fileUpload.UploadFileAsync(model.File, repoPath, model.Id.ToString());
+            }
+            else 
+            {
+                throw new FileUploadExeption("You have not uploaded an image!!!Please do this!!!");
             }
 
             model.Type = model.Type;

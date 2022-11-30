@@ -11,9 +11,9 @@
 <div>
     @foreach (var animal in animals)
     {
-        isMatch = false;
-        @*string pathToImage = $"./wwwroot/Repo/Posts/{post.Id}";*@
-        var pathFile = $"./wwwroot/Repo/Animals/{animal.ShelterId}/{animal.PhotoFileName}";
+        isMatch = false;       
+
+        <div class="declaration">
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("admin")) 
         {
@@ -29,22 +29,24 @@
         
 
         <div class="pet-photo">
-            <img src=@pathFile class="image-pet" alt="photo">
+            <img src='@Url.Content($"~/Repo/Animals/{animal.ShelterId}/{animal.PhotoFileName}")' class="image-pet" alt="photo">
         </div>
         <div class="params">
-            <a class="description">@animal.Name</a>
-        </div>
-        <div class="params">
-            <a class="description">@animal.Type</a>
-        </div>
-        <div class="params">
-            <a class="description">@animal.Age</a>
-        </div>
-        <div class="params">
-            <a class="description">@animal.Gender</a>
-        </div>
-        <div class="params">
-            <a class="description">@animal.Description</a>
+                <div>
+                    <a class="description">@animal.Name</a>
+                </div>
+                <div>
+                    <a class="description">@animal.Type</a>
+                </div>
+                <div>
+                    <a class="description">@animal.Age</a>
+                </div>
+                <div>
+                    <a class="description">@animal.Gender</a>
+                </div>
+                <div>
+                    <a class="description">@animal.Description</a>
+                </div>
         </div>
 
         @if (ViewData["SelectedUserFavorites"] != null)
@@ -71,7 +73,8 @@
                 {
                     <input disabled=@isMatch class="input-button" type="submit" value="Избранное" />
                 }
-            </form>
-        }        
+            </form>            
+        }
+        </div>
     }
 </div>

@@ -8,6 +8,8 @@
 <div class="user-profile">
     <div class="profile-content">
         <form asp-controller="Auth" asp-action="Register" method="post">
+            <div asp-validation-summary="All">
+            </div>
             <div>
                 <p>
                     @Html.LabelFor(x=>x.Email, "Имейл/логин")<br />

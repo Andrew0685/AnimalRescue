@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\ExeptionServices\" />
     <Folder Include="wwwroot\Repo\Animals\" />
     <Folder Include="wwwroot\Repo\Posts\" />
   </ItemGroup>

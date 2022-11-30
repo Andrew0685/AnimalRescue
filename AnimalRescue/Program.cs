@@ -1,3 +1,4 @@
+using AnimalRescue.Middlewares;
 using AnimalRescue.Services.AnimalServices;
 using AnimalRescue.Services.AnimalServices.Interfaces;
 using AnimalRescue.Services.DBServices;
@@ -75,6 +76,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<ExistUserMiddleware>();
+app.UseMiddleware<FileUploadMiddleware>();
 
 app.MapControllerRoute(
     name: "default",
